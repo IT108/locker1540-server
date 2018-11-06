@@ -12,6 +12,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'auth'
 
 
+@app.route('/')
 @app.route('/index')
 @login_required
 def index():
@@ -69,6 +70,11 @@ def delete_card_user():
 @app.route('/delete_name_user', methods=['POST'])
 def delete_name_user():
     return str(db.delete_name_user(request.values.get('name')))
+
+
+@app.route('/sync', methods=['POST'])
+def sync():
+    return db.sync()
 
 
 @login_manager.user_loader

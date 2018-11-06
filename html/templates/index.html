@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Material Design Lite</title>
+    <script type="text/javascript" src="static/libs/jquery.min.js"></script>
+    <title>Locker Home</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -58,7 +59,7 @@
     </div>
     <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid demo-content">
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" id="table">
                 <thead>
                 <tr>
                     <th class="mdl-data-table__cell--non-numeric">Material</th>
@@ -84,6 +85,17 @@
                 </tr>
                 </tbody>
             </table>
+            <script>
+                $(document).ready(function () {
+                    $.ajax({
+                        type: 'post',
+                        url: '/sync',
+                        success: function (data) {
+                            $('#table').html(data);
+                        }
+                    });
+                });
+            </script>
         </div>
     </main>
 </div>

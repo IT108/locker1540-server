@@ -72,3 +72,28 @@ def get_user(uid):
         user = User(str(uid))
 
     return user
+
+
+def sync():
+    db_resp = constants.DB.query("select name, card, position, active from public.users")
+    file = open('html/templates/table_header.txt')
+    resp = file.read()
+    file = open('html/templates/table_user_1.txt')
+    table_user_1 = file.read()
+    file = open('html/templates/table_user_2.txt')
+    table_user_2 = file.read()
+    file = open('html/templates/table_user_3.txt')
+    table_user_3 = file.read()
+    file.close()
+    for i in db_resp:
+        checked = 'checked'
+        if not i[3]:
+            checked = 'unchecked'
+        resp += '\n<li class="mdl-list__item">'
+        resp += '\n' + table_user_1 + '\n' + i[0] + '\n</span>'
+        resp += '\n' + table_user_3 + '\n' + i[1] + '\n</span>'
+        resp += '\n' + table_user_3 + '\n' + i[2] + '\n</span>'
+        resp += '\n' + table_user_2 + checked + '/>\n</label>\n</span>'
+        resp += '\n</li>'
+    resp += '\n</ul>'
+    return resp
