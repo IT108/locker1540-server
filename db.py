@@ -78,22 +78,35 @@ def sync():
     db_resp = constants.DB.query("select name, card, position, active from public.users")
     file = open('html/templates/table_header.txt')
     resp = file.read()
+    file.close()
     file = open('html/templates/table_user_1.txt')
     table_user_1 = file.read()
+    file.close()
     file = open('html/templates/table_user_2.txt')
     table_user_2 = file.read()
+    file.close()
     file = open('html/templates/table_user_3.txt')
     table_user_3 = file.read()
     file.close()
+    file = open('html/templates/table_user_4.txt')
+    table_user_4 = file.read()
+    file.close()
+    file = open('html/templates/table_user_5.txt')
+    table_user_5 = file.read()
+    file.close()
+    resp += '\n<tbody>'
+    q = 0
     for i in db_resp:
+        resp += '\n<tr>'
         checked = 'checked'
         if not i[3]:
             checked = 'unchecked'
-        resp += '\n<li class="mdl-list__item">'
-        resp += '\n' + table_user_1 + '\n' + i[0] + '\n</span>'
-        resp += '\n' + table_user_3 + '\n' + i[1] + '\n</span>'
-        resp += '\n' + table_user_3 + '\n' + i[2] + '\n</span>'
-        resp += '\n' + table_user_2 + checked + '/>\n</label>\n</span>'
-        resp += '\n</li>'
-    resp += '\n</ul>'
+        resp += '\n<td>' + table_user_1 + i[0] + '</button></td>'
+        resp += '\n<td>' + table_user_1 + i[1] + '</button></td>'
+        resp += '\n<td>' + table_user_1 + i[2] + '</button></td>'
+        resp += '\n<td>' + table_user_2 + 'switch-' + str(q) + table_user_3 + 'switch-' + str(q) + table_user_4 +\
+                checked + table_user_5 + '</td>'
+        resp += '\n</tr>'
+        q += 1
+    resp += '\n</tbody>\n</table>'
     return resp

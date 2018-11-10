@@ -1,1 +1,9 @@
-<ul class="demo-list-control mdl-list">
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Card</th>
+      <th>Position</th>
+      <th>Active</th>
+    </tr>
+  </thead>
