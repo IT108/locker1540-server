@@ -1,3 +1,0 @@
->
-  <span class="mdl-switch__label"></span>
-</label>

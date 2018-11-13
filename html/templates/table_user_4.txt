@@ -1,1 +1,0 @@
-" class="mdl-switch__input"

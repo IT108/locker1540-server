@@ -1,1 +1,0 @@
-<label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="

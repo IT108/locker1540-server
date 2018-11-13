@@ -40,12 +40,14 @@ def hello_guest():
 
 
 @app.route('/logout', methods=['GET'])
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 
 @app.route('/add', methods=['POST'])
+@login_required
 def add_card():
     name = str(request.values.get('name'))
     card = str(request.values.get('card'))
@@ -58,23 +60,44 @@ def add_card():
 
 
 @app.route('/get_all_cards', methods=['POST'])
+@login_required
 def get_all_cards():
     return str(db.get_all_users())
 
 
 @app.route('/delete_card_user', methods=['POST'])
+@login_required
 def delete_card_user():
     return str(db.delete_card_user(request.values.get('card')))
 
 
 @app.route('/delete_name_user', methods=['POST'])
+@login_required
 def delete_name_user():
     return str(db.delete_name_user(request.values.get('name')))
 
 
 @app.route('/sync', methods=['POST'])
+@login_required
 def sync():
     return db.sync()
+
+
+@app.route('/open_dialog', methods=['POST'])
+@login_required
+def open_dialog():
+    return db.get_dialog(str(request.values.get('id')))
+
+
+@app.route('/update_user', methods=['POST'])
+@login_required
+def update_user():
+    id = str(request.values.get('id'))
+    name = str(request.values.get('name'))
+    card = str(request.values.get('card'))
+    active = str(request.values.get('active'))
+    position = str(request.values.get('position'))
+    db.update_user(id, name, card, active, position)
 
 
 @login_manager.user_loader

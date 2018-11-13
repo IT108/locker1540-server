@@ -74,25 +74,24 @@ def get_user(uid):
     return user
 
 
+def make_html(example, data):
+    res = str(example)
+    for i in data:
+        key = '{{ ' + i + ' }}'
+        res = res.replace(key, data[i])
+    return res
+
+
 def sync():
-    db_resp = constants.DB.query("select name, card, position, active from public.users")
+    db_resp = constants.DB.query("select name, card, position, active, id from public.users")
     file = open('html/templates/table_header.txt')
     resp = file.read()
     file.close()
-    file = open('html/templates/table_user_1.txt')
-    table_user_1 = file.read()
+    file = open('html/templates/table_button.html')
+    table_button = file.read()
     file.close()
-    file = open('html/templates/table_user_2.txt')
-    table_user_2 = file.read()
-    file.close()
-    file = open('html/templates/table_user_3.txt')
-    table_user_3 = file.read()
-    file.close()
-    file = open('html/templates/table_user_4.txt')
-    table_user_4 = file.read()
-    file.close()
-    file = open('html/templates/table_user_5.txt')
-    table_user_5 = file.read()
+    file = open('html/templates/table_switch.html')
+    table_switch = file.read()
     file.close()
     resp += '\n<tbody>'
     q = 0
@@ -100,13 +99,31 @@ def sync():
         resp += '\n<tr>'
         checked = 'checked'
         if not i[3]:
-            checked = 'unchecked'
-        resp += '\n<td>' + table_user_1 + i[0] + '</button></td>'
-        resp += '\n<td>' + table_user_1 + i[1] + '</button></td>'
-        resp += '\n<td>' + table_user_1 + i[2] + '</button></td>'
-        resp += '\n<td>' + table_user_2 + 'switch-' + str(q) + table_user_3 + 'switch-' + str(q) + table_user_4 +\
-                checked + table_user_5 + '</td>'
+            checked = ''
+        resp += make_html(table_button, {'id': 'table-button-' + str(q) + '-0', 'text': i[0], 'userId': str(i[4])})
+        resp += make_html(table_button, {'id': 'table-button-' + str(q) + '-1', 'text': i[1], 'userId': str(i[4])})
+        resp += make_html(table_button, {'id': 'table-button-' + str(q) + '-2', 'text': i[2], 'userId': str(i[4])})
+        resp += make_html(table_switch, {'id': 'table-switch-' + str(q), 'checked': checked})
         resp += '\n</tr>'
         q += 1
     resp += '\n</tbody>\n</table>'
     return resp
+
+
+def get_dialog(id):
+    db_resp = constants.DB.query("select name, card, position, active from public.users where id=" + id)
+    file = open('html/templates/dialog.html')
+    dialog = file.read()
+    file.close()
+    resp = make_html(dialog, {'userId': str(id), 'name': db_resp[0][0], 'card': db_resp[0][1], 'position': db_resp[0][2]})
+    return resp
+
+
+def update_user(id, name, card, active, position):
+    if active:
+        active = 'true'
+    else:
+        active = 'false'
+    qstr = "update public.users set name = '" + name + "', card = '" + card + "', position = '" + position\
+           + "', active = " + active + " where id = " + id
+    db_resp = constants.DB.query(qstr)
