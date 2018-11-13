@@ -1,7 +1,7 @@
 import postgresql
 DBIP = '176.99.11.114'
-username = 'locker'
-password = 'locker1540'
+username = 'locker_admin'
+password = 'locker1540_admin'
 DBName = 'locker'
 DB = postgresql.open('pq://' + username + ':' + password + '@' + DBIP + ':5432/' + DBName)
 

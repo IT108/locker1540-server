@@ -27,12 +27,6 @@ def login(card):
         return False
 
 
-def add_user(card, name, admin, greeting, active, position):
-    values = name + ',' + card + ',' + admin + ',' + greeting + ',' + active + ',' + position
-    resp = constants.DB.query('insert into public.users values (' + values + ')')
-    return str(resp)
-
-
 def delete_card_user(card):
     resp = constants.DB.query('delete from public.users where card = \'' + card + '\'')
     return str(resp)
@@ -82,9 +76,9 @@ def make_html(example, data):
     return res
 
 
-def sync():
-    db_resp = constants.DB.query("select name, card, position, active, id from public.users")
-    file = open('html/templates/table_header.txt')
+def sync(order):
+    db_resp = constants.DB.query("select name, card, position, active, id from public.users order by " + order)
+    file = open('html/templates/table_header.html')
     resp = file.read()
     file.close()
     file = open('html/templates/table_button.html')
@@ -103,7 +97,7 @@ def sync():
         resp += make_html(table_button, {'id': 'table-button-' + str(q) + '-0', 'text': i[0], 'userId': str(i[4])})
         resp += make_html(table_button, {'id': 'table-button-' + str(q) + '-1', 'text': i[1], 'userId': str(i[4])})
         resp += make_html(table_button, {'id': 'table-button-' + str(q) + '-2', 'text': i[2], 'userId': str(i[4])})
-        resp += make_html(table_switch, {'id': 'table-switch-' + str(q), 'checked': checked})
+        resp += make_html(table_switch, {'UserId': str(i[4]), 'id': 'table-switch-' + str(q), 'checked': checked})
         resp += '\n</tr>'
         q += 1
     resp += '\n</tbody>\n</table>'
@@ -127,3 +121,29 @@ def update_user(id, name, card, active, position):
     qstr = "update public.users set name = '" + name + "', card = '" + card + "', position = '" + position\
            + "', active = " + active + " where id = " + id
     db_resp = constants.DB.query(qstr)
+    print(db_resp)
+
+
+def add_user(name, card, active, position):
+    if active:
+        active = 'true'
+    else:
+        active = 'false'
+    qstr = "insert into public.users (name, card, active, position) values ('" + name + "', '" + card + "', " + active + ", '" + position + "')"
+    db_resp = constants.DB.query(qstr)
+    print(db_resp)
+
+
+def toggle_user(id):
+    db_resp = constants.DB.query('select active from public.users where id = ' + id)
+    new_active = 'true'
+    res = 'activated'
+    if db_resp.__len__() > 0:
+        if db_resp[0][0]:
+            new_active = 'false'
+            res = 'inactivated'
+        db_resp = constants.DB.query("update public.users set active= " + new_active + " where id = " + id)
+    else:
+        res = 'error'
+    return res
+

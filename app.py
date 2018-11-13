@@ -46,19 +46,6 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/add', methods=['POST'])
-@login_required
-def add_card():
-    name = str(request.values.get('name'))
-    card = str(request.values.get('card'))
-    admin = str(request.values.get('admin'))
-    greeting = str(request.values.get('greeting'))
-    active = str(request.values.get('active'))
-    position = str(request.values.get('position'))
-    db.add_user(card, name, admin, greeting, active, position)
-    return 'True'
-
-
 @app.route('/get_all_cards', methods=['POST'])
 @login_required
 def get_all_cards():
@@ -80,13 +67,28 @@ def delete_name_user():
 @app.route('/sync', methods=['POST'])
 @login_required
 def sync():
-    return db.sync()
+    param = 'id'
+    req = request.values.get('sort')
+    if req is not None:
+        param = req
+    return db.sync(param)
 
 
 @app.route('/open_dialog', methods=['POST'])
 @login_required
 def open_dialog():
     return db.get_dialog(str(request.values.get('id')))
+
+
+@app.route('/add_user', methods=['POST'])
+@login_required
+def add_user():
+    name = str(request.values.get('name'))
+    card = str(request.values.get('card'))
+    active = str(request.values.get('active'))
+    position = str(request.values.get('position'))
+    db.add_user(name, card, active, position)
+    return 'OK'
 
 
 @app.route('/update_user', methods=['POST'])
@@ -97,7 +99,25 @@ def update_user():
     card = str(request.values.get('card'))
     active = str(request.values.get('active'))
     position = str(request.values.get('position'))
+    print(position)
     db.update_user(id, name, card, active, position)
+    return 'OK'
+
+
+@app.route('/toggle_user', methods=['POST'])
+@login_required
+def toggle_user():
+    return db.toggle_user(request.values.get('id'))
+
+
+@app.route('/add_user_dialog', methods=['POST'])
+@login_required
+def add_user_dialog():
+    error = ''
+    if request.values.get('error') is not None:
+        error = 'Error:"' + request.values.get('error')
+    file = open('html/templates/add_dialog.html')
+    return file.read().replace('{{ error }}', error)
 
 
 @login_manager.user_loader
