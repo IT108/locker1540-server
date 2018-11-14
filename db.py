@@ -5,15 +5,26 @@ import random
 import os
 from flask_login import UserMixin
 
+path = constants.server_path
+
 
 class User(UserMixin):
     id = ''
+    name = ''
 
-    def __init__(self, id):
+    def __init__(self, id, name):
         self.id = id
+        self.name = name
 
     def get_id(self):
         return self.id
+
+    def set_name(self, a):
+        self.name = a
+
+    def get_name(self):
+        return self.name
+
 
 def init():
     constants.DB = postgresql.open('pq://' + constants.username + ':' + constants.password + '@' + constants.DBIP
@@ -61,10 +72,11 @@ def check_admin(admin_login, password):
 
 
 def get_user(uid):
-    resp = constants.DB.query("select is_authenticated, is_active, is_anonymous from public.admins where id =" + str(uid))
+    resp = constants.DB.query(
+        "select is_authenticated, is_active, is_anonymous, name from public.admins where id =" + str(uid))
     user = None
     if resp.__len__() > 0:
-        user = User(str(uid))
+        user = User(str(uid), [resp[0][3]])
 
     return user
 
@@ -79,13 +91,13 @@ def make_html(example, data):
 
 def sync(order):
     db_resp = constants.DB.query("select name, card, position, active, id from public.users order by " + order)
-    file = open(constants.server_path + 'html/templates/table_header.html')
+    file = open(os.path.join(path, 'html/templates/table_header.html'))
     resp = file.read()
     file.close()
-    file = open(constants.server_path + 'html/templates/table_button.html')
+    file = open(os.path.join(path, 'html/templates/table_button.html'))
     table_button = file.read()
     file.close()
-    file = open(constants.server_path + 'html/templates/table_switch.html')
+    file = open(os.path.join(path, 'html/templates/table_switch.html'))
     table_switch = file.read()
     file.close()
     resp += '\n<tbody>'
@@ -107,10 +119,11 @@ def sync(order):
 
 def get_dialog(id):
     db_resp = constants.DB.query("select name, card, position, active from public.users where id=" + id)
-    file = open(constants.server_path + 'html/templates/dialog.html')
+    file = open(os.path.join(path, 'html/templates/dialog.html'))
     dialog = file.read()
     file.close()
-    resp = make_html(dialog, {'userId': str(id), 'name': db_resp[0][0], 'card': db_resp[0][1], 'position': db_resp[0][2]})
+    resp = make_html(dialog,
+                     {'userId': str(id), 'name': db_resp[0][0], 'card': db_resp[0][1], 'position': db_resp[0][2]})
     return resp
 
 
@@ -119,7 +132,7 @@ def update_user(id, name, card, active, position):
         active = 'true'
     else:
         active = 'false'
-    qstr = "update public.users set name = '" + name + "', card = '" + card + "', position = '" + position\
+    qstr = "update public.users set name = '" + name + "', card = '" + card + "', position = '" + position \
            + "', active = " + active + " where id = " + id
     db_resp = constants.DB.query(qstr)
     print(db_resp)
@@ -147,4 +160,3 @@ def toggle_user(id):
     else:
         res = 'error'
     return res
-

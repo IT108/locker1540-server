@@ -3,7 +3,7 @@ import os
 from flask import redirect, render_template, url_for, request, Flask, Session
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
-template_dir = os.path.normpath('/var/www/locker/server/html')
+template_dir = os.path.join(constants.server_path + 'html')
 template_dir = os.path.join(template_dir, 'templates')
 print(template_dir)
 app = Flask(__name__, template_folder=template_dir)
@@ -16,7 +16,7 @@ login_manager.login_view = 'auth'
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html')
+    return render_template('index.html', name = current_user.name[0])
 
 
 @app.route('/login', methods=['GET','POST'])

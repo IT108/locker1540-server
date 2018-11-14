@@ -1,9 +1,11 @@
 import postgresql
+import os
 DBIP = '176.99.11.114'
 username = 'locker_admin'
 password = 'locker1540_admin'
 DBName = 'locker'
 server_path = '/var/www/locker/server/'
+dev_path = os.getcwd()
 DB = postgresql.open('pq://' + username + ':' + password + '@' + DBIP + ':5432/' + DBName)
 
 
