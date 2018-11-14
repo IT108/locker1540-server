@@ -19,6 +19,7 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/login', methods=['GET','POST'])
 @app.route('/auth', methods=['GET', 'POST'])
 def auth():
     error = None
@@ -32,11 +33,6 @@ def auth():
 
             return redirect(url_for('index'))
     return render_template('login.html', error=error)
-
-
-@app.route('/login', methods=['POST'])
-def hello_guest():
-    return str(db.login(request.values.get('card')))
 
 
 @app.route('/logout', methods=['GET'])
