@@ -1,3 +1,5 @@
+from werkzeug.urls import url_parse
+
 import db, constants
 import os
 from flask import redirect, render_template, url_for, request, Flask, Session
@@ -16,12 +18,14 @@ login_manager.login_view = 'auth'
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html', name = current_user.name[0])
+    return render_template('index.html', name=current_user.name[0])
 
 
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 @app.route('/auth', methods=['GET', 'POST'])
 def auth():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     error = None
     if request.method == 'POST':
         db_resp = db.check_admin(request.form['username'], request.form['password'])
@@ -30,8 +34,10 @@ def auth():
         else:
             user = db.get_user(db_resp)
             login_user(user)
-
-            return redirect(url_for('index'))
+            next_page = request.args.get('next')
+            if not next_page or url_parse(next_page).netloc != '':
+                next_page = url_for('index')
+            return redirect(next_page)
     return render_template('login.html', error=error)
 
 
