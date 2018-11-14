@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /var/www/locker/server
+git pull
+systemctl restart apache2
+echo "Server updated"
