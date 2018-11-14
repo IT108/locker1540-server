@@ -3,7 +3,7 @@ import os
 from flask import redirect, render_template, url_for, request, Flask, Session
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
-template_dir = normpath('/var/www/locker/server/html')
+template_dir = os.path.abspath('html')
 template_dir = os.path.join(template_dir, 'templates')
 print(template_dir)
 app = Flask(__name__, template_folder=template_dir)
@@ -112,7 +112,7 @@ def add_user_dialog():
     error = ''
     if request.values.get('error') is not None:
         error = 'Error:"' + request.values.get('error')
-    file = open(constants.server_path + 'html/templates/add_dialog.html')
+    file = open('html/templates/add_dialog.html')
     return file.read().replace('{{ error }}', error)
 
 

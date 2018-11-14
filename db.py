@@ -2,6 +2,7 @@ import postgresql
 import constants
 import datetime
 import random
+import os
 from flask_login import UserMixin
 
 
@@ -78,13 +79,13 @@ def make_html(example, data):
 
 def sync(order):
     db_resp = constants.DB.query("select name, card, position, active, id from public.users order by " + order)
-    file = open('html/templates/table_header.html')
+    file = open(constants.server_path + 'html/templates/table_header.html')
     resp = file.read()
     file.close()
-    file = open('html/templates/table_button.html')
+    file = open(constants.server_path + 'html/templates/table_button.html')
     table_button = file.read()
     file.close()
-    file = open('html/templates/table_switch.html')
+    file = open(constants.server_path + 'html/templates/table_switch.html')
     table_switch = file.read()
     file.close()
     resp += '\n<tbody>'
@@ -106,7 +107,7 @@ def sync(order):
 
 def get_dialog(id):
     db_resp = constants.DB.query("select name, card, position, active from public.users where id=" + id)
-    file = open('html/templates/dialog.html')
+    file = open(constants.server_path + 'html/templates/dialog.html')
     dialog = file.read()
     file.close()
     resp = make_html(dialog, {'userId': str(id), 'name': db_resp[0][0], 'card': db_resp[0][1], 'position': db_resp[0][2]})
