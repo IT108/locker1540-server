@@ -3,7 +3,7 @@ import os
 from flask import redirect, render_template, url_for, request, Flask, Session
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 
-template_dir = os.path.join(constants.dev_path , 'html')
+template_dir = os.path.join(constants.dev_path, 'html')
 template_dir = os.path.join(template_dir, 'templates')
 print(template_dir)
 app = Flask(__name__, template_folder=template_dir)

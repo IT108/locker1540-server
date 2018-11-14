@@ -5,7 +5,7 @@ import random
 import os
 from flask_login import UserMixin
 
-path = constants.server_path
+path = constants.current_path
 
 
 class User(UserMixin):
