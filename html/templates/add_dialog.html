@@ -1,14 +1,17 @@
 <dialog class="mdl-dialog" id="user_edit_dialog">
     <h4 class="mdl-dialog__title">Add user</h4>
     <div class="mdl-dialog__content">
-        <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="name" name="name"/>
-            <label class="mdl-textfield__label" for="name">Name</label>
-        </div>
-        <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="card" name="card"/>
-            <label class="mdl-textfield__label" for="card">Card</label>
-        </div>
+        <form id="text-form">
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="name" name="name" required/>
+                <label class="mdl-textfield__label" for="name">Name</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="card" name="card" required pattern="[0-9A-Fa-f]{8}"/>
+                <label class="mdl-textfield__label" for="card">Card</label>
+            </div>
+        </form>
+        <p id="error" class="error"><strong></strong>
         <form id="options-form">
             <div><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
                 <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="students" checked>

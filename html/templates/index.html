@@ -57,7 +57,7 @@
             <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
                                                        role="presentation">home</i>Home</a>
             <a class="mdl-navigation__link" href="/logout"><i class="mdl-color-text--blue-grey-400 material-icons"
-                                                       role="presentation">exit_to_app</i>Logout</a>
+                                                              role="presentation">exit_to_app</i>Logout</a>
             <div class="mdl-layout-spacer"></div>
             <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons"
                                                        role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
@@ -142,21 +142,25 @@
             var card = document.getElementById('card').value;
             var position = $('input[name=options]:checked', '#options-form').val();
             var active = true;
-            $.ajax({
-                type: 'post',
-                url: '/add_user',
-                data: {
-                    'name': name,
-                    'card': card,
-                    'position': position,
-                    'active': active
-                },
-                success: function (data) {
-                    syncTable();
-                    dialog1.close();
-                    makeToast("User added");
-                }
-            });
+            if (document.getElementById('text-form').checkValidity()) {
+                $.ajax({
+                    type: 'post',
+                    url: '/add_user',
+                    data: {
+                        'name': name,
+                        'card': card,
+                        'position': position,
+                        'active': active
+                    },
+                    success: function (data) {
+                        syncTable();
+                        dialog1.close();
+                        makeToast("User added");
+                    }
+                });
+            }  else  {
+                document.getElementById("error").innerHTML = "<strong>8 Characters A-F, a-f or 0-9 expected</strong>";
+            }
         }
 
         function updateUser(id) {
@@ -164,22 +168,28 @@
             var card = document.getElementById('card').value;
             var position = $('input[name=options]:checked', '#options-form').val();
             var active = true;
-            $.ajax({
-                type: 'post',
-                url: '/update_user',
-                data: {
-                    'id': id,
-                    'name': name,
-                    'card': card,
-                    'position': position,
-                    'active': active
-                },
-                success: function (data) {
-                    syncTable();
-                    dialog1.close();
-                    makeToast("User Updated");
-                }
-            });
+            if (document.getElementById('text-form').checkValidity())
+            {
+                $.ajax({
+                    type: 'post',
+                    url: '/update_user',
+                    data: {
+                        'id': id,
+                        'name': name,
+                        'card': card,
+                        'position': position,
+                        'active': active
+                    },
+                    success: function (data) {
+                        syncTable();
+                        dialog1.close();
+                        makeToast("User Updated");
+                    }
+                });
+            } else  {
+                document.getElementById("error").innerHTML = "<strong>8 Characters A-F, a-f or 0-9 expected</strong>";
+            }
+
         }
 
         function changeSort(param) {

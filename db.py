@@ -133,7 +133,7 @@ def update_user(id, name, card, active, position):
         active = 'true'
     else:
         active = 'false'
-    qstr = "update public.users set name = '" + name + "', card = '" + card + "', position = '" + position \
+    qstr = "update public.users set name = '" + name + "', card = '" + str(card).upper() + "', position = '" + position \
            + "', active = " + active + " where id = " + id
     db_resp = constants.DB.query(qstr)
     print(db_resp)
@@ -144,7 +144,7 @@ def add_user(name, card, active, position):
         active = 'true'
     else:
         active = 'false'
-    qstr = "insert into public.users (name, card, active, position) values ('" + name + "', '" + card + "', " + active + ", '" + position + "')"
+    qstr = "insert into public.users (name, card, active, position) values ('" + name + "', '" + str(card).upper() + "', " + active + ", '" + position + "')"
     db_resp = constants.DB.query(qstr)
     print(db_resp)
 

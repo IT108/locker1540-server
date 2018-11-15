@@ -118,7 +118,7 @@ def add_user_dialog():
     error = ''
     if request.values.get('error') is not None:
         error = 'Error:"' + request.values.get('error')
-    file = open(constants.server_path + 'html/templates/add_dialog.html')
+    file = open(os.path.join(constants.current_path, 'html/templates/add_dialog.html'))
     return file.read().replace('{{ error }}', error)
 
 
