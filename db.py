@@ -123,7 +123,8 @@ def get_dialog(id):
     dialog = file.read()
     file.close()
     resp = make_html(dialog,
-                     {'userId': str(id), 'name': db_resp[0][0], 'card': db_resp[0][1], 'position': db_resp[0][2]})
+                     {'userId': str(id), 'name': db_resp[0][0], 'card': db_resp[0][1],
+                      db_resp[0][2] + 'Checked': 'checked'})
     return resp
 
 

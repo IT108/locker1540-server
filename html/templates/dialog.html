@@ -9,10 +9,17 @@
             <input class="mdl-textfield__input" type="text" id="card" name="card" value="{{ card }}"/>
             <label class="mdl-textfield__label" for="card">Card</label>
         </div>
-        <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" id="position" name="position" value="{{ position }}"/>
-            <label class="mdl-textfield__label" for="position">Position</label>
-        </div>
+        <form id="options-form">
+            <div><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+                <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="students" {{ studentsChecked }}>
+                <span class="mdl-radio__label">Students</span>
+            </label>
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+                    <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="teachers" {{ teachersChecked }}>
+                    <span class="mdl-radio__label">Teachers</span>
+                </label>
+            </div>
+        </form>
     </div>
     <div class="mdl-dialog__actions">
         <button type="button" class="mdl-button  mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="updateUser({{ userId }});">Ok</button>

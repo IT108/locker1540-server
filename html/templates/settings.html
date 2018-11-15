@@ -162,7 +162,7 @@
         function updateUser(id) {
             var name = document.getElementById("name").value;
             var card = document.getElementById('card').value;
-            var position = $('input[name=options]:checked', '#options-form').val();
+            var position = document.getElementById('position').value;
             var active = true;
             $.ajax({
                 type: 'post',
