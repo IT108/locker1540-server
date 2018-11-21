@@ -1,5 +1,5 @@
 from werkzeug.urls import url_parse
-
+import backend.index, backend.admins
 import db, constants
 import os
 from flask import redirect, render_template, url_for, request, Flask, Session
@@ -14,14 +14,7 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'auth'
 
 
-@app.route('/')
-@app.route('/index')
-@login_required
-def index():
-    return render_template('index.html', name=current_user.name[0])
-
-
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET','POST'])
 @app.route('/auth', methods=['GET', 'POST'])
 def auth():
     if current_user.is_authenticated:
@@ -47,23 +40,14 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+# <------------------------------------------------USERS------------------------------------------------>
 
-@app.route('/get_all_cards', methods=['POST'])
+
+@app.route('/')
+@app.route('/index')
 @login_required
-def get_all_cards():
-    return str(db.get_all_users())
-
-
-@app.route('/delete_card_user', methods=['POST'])
-@login_required
-def delete_card_user():
-    return str(db.delete_card_user(request.values.get('card')))
-
-
-@app.route('/delete_name_user', methods=['POST'])
-@login_required
-def delete_name_user():
-    return str(db.delete_name_user(request.values.get('name')))
+def index():
+    return render_template('index.html', name=current_user.name[0])
 
 
 @app.route('/sync', methods=['POST'])
@@ -73,13 +57,7 @@ def sync():
     req = request.values.get('sort')
     if req is not None:
         param = req
-    return db.sync(param)
-
-
-@app.route('/open_dialog', methods=['POST'])
-@login_required
-def open_dialog():
-    return db.get_dialog(str(request.values.get('id')))
+    return backend.index.sync(param)
 
 
 @app.route('/add_user', methods=['POST'])
@@ -89,7 +67,7 @@ def add_user():
     card = str(request.values.get('card'))
     active = str(request.values.get('active'))
     position = str(request.values.get('position'))
-    db.add_user(name, card, active, position)
+    backend.index.add_user(name, card, active, position)
     return 'OK'
 
 
@@ -102,14 +80,20 @@ def update_user():
     active = str(request.values.get('active'))
     position = str(request.values.get('position'))
     print(position)
-    db.update_user(id, name, card, active, position)
+    backend.index.update_user(id, name, card, active, position)
     return 'OK'
 
 
 @app.route('/toggle_user', methods=['POST'])
 @login_required
 def toggle_user():
-    return db.toggle_user(request.values.get('id'))
+    return backend.index.toggle_user(request.values.get('id'))
+
+
+@app.route('/open_dialog', methods=['POST'])
+@login_required
+def open_dialog():
+    return backend.index.get_dialog(str(request.values.get('id')))
 
 
 @app.route('/add_user_dialog', methods=['POST'])
@@ -118,8 +102,67 @@ def add_user_dialog():
     error = ''
     if request.values.get('error') is not None:
         error = 'Error:"' + request.values.get('error')
-    file = open(os.path.join(constants.current_path, 'html/templates/add_dialog.html'))
+    file = open(os.path.join(constants.current_path, 'html/templates/index/add_dialog.html'))
     return file.read().replace('{{ error }}', error)
+
+
+# <------------------------------------------------ADMINS------------------------------------------------>
+
+
+@app.route('/admins', methods=['GET'])
+@login_required
+def admins():
+    return render_template('admins.html', name=current_user.name[0])
+
+
+@app.route('/sync_admins', methods=['POST'])
+@login_required
+def sync_admins():
+    param = 'id'
+    req = request.values.get('sort')
+    if req is not None:
+        param = req
+    return backend.admins.sync(param)
+
+
+@app.route('/add_admin', methods=['POST'])
+@login_required
+def add_admin():
+    name = str(request.values.get('name'))
+    email = str(request.values.get('email'))
+    login = str(request.values.get('login'))
+    password = str(request.values.get('password'))
+    return backend.admins.add_user(name, email, login, password)
+
+
+@app.route('/update_admin', methods=['POST'])
+@login_required
+def update_admin():
+    id = str(request.values.get('id'))
+    name = str(request.values.get('name'))
+    email = str(request.values.get('email'))
+    login = str(request.values.get('login'))
+    return backend.admins.update_user(id, name, email, login)
+
+
+@app.route('/delete_admin', methods=['POST'])
+@login_required
+def delete_admin():
+    id = str(request.values.get('id'))
+    backend.admins.delete_admin(id)
+    return 'OK'
+
+
+@app.route('/open_admin_dialog', methods=['POST'])
+@login_required
+def open_admin_dialog():
+    return backend.admins.get_dialog(str(request.values.get('id')))
+
+
+@app.route('/add_admin_dialog', methods=['POST'])
+@login_required
+def add_admin_dialog():
+    return backend.admins.get_empty_dialog()
 
 
 @login_manager.user_loader
