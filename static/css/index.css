@@ -114,6 +114,9 @@ html, body {
     flex-grow: 1;
 }
 
+
+
+
 .demo-layout .demo-navigation .mdl-navigation__link {
     display: -webkit-flex !important;
     display: -ms-flexbox !important;
@@ -322,4 +325,10 @@ _:-ms-input-placeholder, :root .demo-graph {
 .mdl-dialog__content {
     padding: 20px 24px 24px 24px;
     color: rgba(0, 0, 0, 0.54);
+}
+
+
+.table-button{
+    float: left;
+    margin-left: 5px;
 }
