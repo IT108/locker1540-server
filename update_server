@@ -3,5 +3,5 @@
 cd /var/www/locker/server
 git pull
 systemctl restart apache2
-cp __init.py__ ini/__init.py__
+cp __init__.py ini/__init__.py
 echo "Server updated"
