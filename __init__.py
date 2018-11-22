@@ -10,6 +10,7 @@ template_dir = os.path.join(template_dir, 'templates')
 print(template_dir)
 app = Flask(__name__, template_folder=template_dir)
 app.secret_key = 'secretkey'
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
 login_manager = LoginManager(app)
 login_manager.login_view = 'auth'
 
