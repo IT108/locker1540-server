@@ -9,7 +9,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/locker1540_server$server.coverage" NAME="server Coverage Results" MODIFIED="1545137545390" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/locker1540_server$server.coverage" NAME="server Coverage Results" MODIFIED="1545140367421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/server$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1538994786633" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/server$server.coverage" NAME="server Coverage Results" MODIFIED="1539881392351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
@@ -262,7 +262,7 @@
           <entry key="dummy" value="8" />
           <entry key="html" value="1811" />
           <entry key="js" value="387" />
-          <entry key="py" value="3701" />
+          <entry key="py" value="3702" />
           <entry key="sh" value="73" />
           <entry key="sql" value="71" />
           <entry key="txt" value="48" />
@@ -277,7 +277,7 @@
           <entry key="HTML" value="1811" />
           <entry key="JavaScript" value="387" />
           <entry key="PLAIN_TEXT" value="56" />
-          <entry key="Python" value="3722" />
+          <entry key="Python" value="3723" />
           <entry key="Scratch" value="73" />
         </counts>
       </usages-collector>
@@ -290,7 +290,7 @@
           <entry key="jpg" value="1" />
           <entry key="js" value="4" />
           <entry key="locker_admin" value="1" />
-          <entry key="py" value="28" />
+          <entry key="py" value="31" />
           <entry key="sql" value="1" />
           <entry key="table_user_start" value="1" />
           <entry key="text" value="1" />
@@ -309,7 +309,7 @@
           <entry key="Image" value="1" />
           <entry key="JavaScript" value="4" />
           <entry key="PLAIN_TEXT" value="6" />
-          <entry key="Python" value="29" />
+          <entry key="Python" value="32" />
           <entry key="SQL" value="1" />
           <entry key="Scratch" value="1" />
         </counts>
@@ -318,11 +318,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/locker_service/flaskapp.wsgi">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+            <state relative-caret-position="85">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ini/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -448,7 +469,6 @@
         <option value="$PROJECT_DIR$/html/templates/add_dialog.html" />
         <option value="$PROJECT_DIR$/html/templates/dialog.html" />
         <option value="$PROJECT_DIR$/static/js/login.js" />
-        <option value="$PROJECT_DIR$/ini/__init__.py" />
         <option value="$PROJECT_DIR$/backend/index.py" />
         <option value="$PROJECT_DIR$/db.py" />
         <option value="$PROJECT_DIR$/html/templates/admins/add_dialog.html" />
@@ -469,6 +489,7 @@
         <option value="$PROJECT_DIR$/locker_service/auth/__init__.py" />
         <option value="$PROJECT_DIR$/locker_service/flaskapp.wsgi" />
         <option value="$PROJECT_DIR$/update_server" />
+        <option value="$PROJECT_DIR$/ini/__init__.py" />
       </list>
     </option>
   </component>
@@ -563,17 +584,18 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\locker1540-server\ini" />
+      <recent name="E:\locker1540-server\html\templates\admins" />
+      <recent name="E:\locker1540-server\html\templates" />
+      <recent name="E:\locker1540-server\html\templates\index" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\locker1540-server\static" />
       <recent name="E:\locker1540-server\html\templates\admins" />
       <recent name="E:\locker1540-server\static\css" />
       <recent name="E:\locker1540-server\html\templates\index" />
       <recent name="E:\locker1540-server\html\templates" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\locker1540-server\html\templates\admins" />
-      <recent name="E:\locker1540-server\html\templates" />
-      <recent name="E:\locker1540-server\html\templates\index" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -712,6 +734,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49867374" visible="true" weight="0.19676113" />
       <window_info id="Structure" order="1" sideWeight="0.50132626" side_tool="true" weight="0.16923077" />
@@ -786,7 +809,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="update script" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/html/login/login.html" />
     <entry file="das://1653efd2-8186-4c4d-8d6b-403fa736a6a5/database/locker/schema/public/table/admins.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1016,16 +1038,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ini/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/locker_service/auth/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1073,8 +1085,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/locker_service/flaskapp.wsgi">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
+        <state relative-caret-position="85">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ini/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="31" lean-forward="true" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
