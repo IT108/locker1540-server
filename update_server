@@ -1,7 +1,9 @@
 #!/bin/bash
 
 cd /var/www/locker/server
+systemctl stop apache2
 git pull
-systemctl restart apache2
 cp __init__.py ini/__init__.py
+cp locker_serivce/__init__.py locker_service/ini/__init__.py
+systemctl start apache2
 echo "Server updated"
