@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0bc5843-b605-470a-8f64-a4fb90a61ff1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ini/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/ini/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/update_server" beforeDir="false" afterPath="$PROJECT_DIR$/update_server" afterDir="false" />
-    </list>
+    <list default="true" id="c0bc5843-b605-470a-8f64-a4fb90a61ff1" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -539,7 +533,7 @@
             <path>
               <item name="locker1540-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="locker1540-server" type="462c0819:PsiDirectoryNode" />
-              <item name="locker_service" type="462c0819:PsiDirectoryNode" />
+              <item name="ini" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -553,11 +547,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="database.data.extractors.current.id" value="Tab-separated (TSV)_id" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/__init__.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="two.files.diff.last.used.file" value="$USER_HOME$/__init__.py" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -717,7 +712,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49867374" visible="true" weight="0.19676113" />
       <window_info id="Structure" order="1" sideWeight="0.50132626" side_tool="true" weight="0.16923077" />
