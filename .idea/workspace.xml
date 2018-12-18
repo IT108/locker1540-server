@@ -256,7 +256,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="150" />
+          <entry key="Python Console" value="157" />
           <entry key="cell" value="2" />
           <entry key="css" value="85" />
           <entry key="dummy" value="8" />
@@ -266,18 +266,18 @@
           <entry key="sh" value="73" />
           <entry key="sql" value="71" />
           <entry key="txt" value="48" />
-          <entry key="update_server" value="62" />
+          <entry key="update_server" value="64" />
           <entry key="wsgi" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Bash" value="135" />
+          <entry key="Bash" value="137" />
           <entry key="CSS" value="85" />
           <entry key="HTML" value="1811" />
           <entry key="JavaScript" value="387" />
           <entry key="PLAIN_TEXT" value="56" />
-          <entry key="Python" value="3893" />
+          <entry key="Python" value="3900" />
           <entry key="Scratch" value="73" />
         </counts>
       </usages-collector>
@@ -318,27 +318,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/locker_service/flaskapp.wsgi">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ini/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -388,8 +367,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/update_server">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+            <state relative-caret-position="136">
+              <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -555,6 +534,11 @@
               <item name="locker1540-server" type="b2602c69:ProjectViewProjectNode" />
               <item name="locker1540-server" type="462c0819:PsiDirectoryNode" />
               <item name="ini" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="locker1540-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="locker1540-server" type="462c0819:PsiDirectoryNode" />
+              <item name="locker_service" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1101,8 +1085,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/update_server">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="8" lean-forward="true" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+        <state relative-caret-position="136">
+          <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
         </state>
       </provider>
     </entry>
