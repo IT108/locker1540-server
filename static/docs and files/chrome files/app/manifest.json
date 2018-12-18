@@ -1,0 +1,21 @@
+{
+  "name": "Card reader",
+  "description": "App for reading card in locker1540",
+  "version": "1.1",
+  "manifest_version": 2,
+  "app": {
+    "background": {
+      "scripts": [
+        "background.js"
+      ]
+    }
+  },
+  "icons": {
+    "16": "images/app_logo16px.png",
+    "48": "images/app_logo48px.png",
+    "128": "images/app_logo128px.png"
+  },
+  "permissions": [
+    "serial"
+  ]
+}
