@@ -6,9 +6,24 @@
                 <input class="mdl-textfield__input" type="text" required id="name" name="name" value="{{ name }}"/>
                 <label class="mdl-textfield__label" for="name">Name</label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" id="card" required name="card" pattern="[0-9A-Fa-f]{8}" value="{{ card }}"/>
-                <label class="mdl-textfield__label" for="card">Card</label>
+            <div style="overflow: hidden;">
+                <div>
+                    <div style="float: left; width: 200px">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="card" required name="card"
+                                   pattern="[0-9A-Fa-f]{8}"
+                                   value="{{ card }}"/>
+                            <label class="mdl-textfield__label" for="card">Card</label>
+
+                        </div>
+                    </div>
+                    <div>
+                        <div style="margin-left: 10px; height: 15px"></div>
+                        <button onclick="getSerialCard();" type="button" style="float: bottom" class="mdl-button mdl-js-button mdl-button--icon">
+                            <i class="material-icons">scanner</i>
+                        </button>
+                    </div>
+                </div>
             </div>
             <p id="error" class="error"><strong></strong>
         </form>

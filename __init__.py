@@ -12,11 +12,11 @@ app = Flask(__name__, template_folder=template_dir)
 app.secret_key = 'secretkey'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
 login_manager = LoginManager(app)
-login_manager.login_view = 'auth'
+login_manager.login_view = 'ini'
 
 
 @app.route('/login', methods=['GET','POST'])
-@app.route('/auth', methods=['GET', 'POST'])
+@app.route('/ini', methods=['GET', 'POST'])
 def auth():
     if current_user.is_authenticated:
         return redirect(url_for('index'))

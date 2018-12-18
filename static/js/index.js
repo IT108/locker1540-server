@@ -136,3 +136,14 @@ var dialog = document.querySelector('#user_edit_dialog');
 if (!dialog.showModal) {
     dialogPolyfill.registerDialog(dialog);
 }
+
+function getSerialCard() {
+    document.addEventListener("scanner", setCard);
+    var data = {action: 'scan'};
+    window.postMessage(data,'*');
+}
+
+function setCard(data) {
+    document.getElementById('card').value = data.detail.barcode;
+    document.removeEventListener("scanner", setCard);
+}
