@@ -2,6 +2,7 @@ import postgresql
 import constants
 import datetime
 import random
+import csv
 
 
 def init():
@@ -10,8 +11,10 @@ def init():
 
 
 def get_card(card):
-    resp = constants.DB.query('select active, greeting, position from public.users where card = \'' + card + '\'')
+    resp = constants.DB.query('select active, greeting, position, id from public.users where card = \'' + card + '\'')
     if resp.__len__() > 0:
+        if resp[0][0]:
+            login_plus(str(resp[0][3]))
         return str(resp[0][0]) + ';' + str(get_common_greet(resp[0][2])) + ';' + str(resp[0][1]) + ';'
     else:
         return False
@@ -52,3 +55,22 @@ def sync():
         res += str(a[0])
     res += ';'
     return res
+
+
+def login_plus(id):
+    i = constants.DB.query('select today_login from public.users where id=' + id)
+    i += 1
+    constants.DB.query('update public.users set today_login=' + i + ' where id=' + id)
+
+
+def update_logins():
+    time = datetime.datetime.now()
+    filename = "logs/" + time.day + '.' + time.month + '.' + time.year + '.log'
+    i = []
+    q = constants.DB.query('select id, name, today_login from public.users')
+    for a in q:
+        i.append([a[0], a[1], a[2]])
+    with open(filename, "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerows(i)
+    constants.DB.query('update public.users set today_login=0')

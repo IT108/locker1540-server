@@ -1,9 +1,11 @@
 import postgresql
+from pyriodic import Scheduler
 DBIP = '176.99.11.114'
 username = 'locker'
 password = 'locker1540'
 DBName = 'locker'
 DB = postgresql.open('pq://' + username + ':' + password + '@' + DBIP + ':5432/' + DBName)
+s = Scheduler()
 
 
 # ------------------------------------------------DATASETS------------------------------------------------ #
