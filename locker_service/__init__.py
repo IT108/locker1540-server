@@ -3,7 +3,7 @@ from flask import request
 from pyriodic import DatetimeJob
 import db, constants
 app = Flask(__name__)
-constants.s.add_job(DatetimeJob(db.update_logins, when='11:36', interval='daily'))
+constants.s.add_job(DatetimeJob(db.update_logins, when='11:59 pm', interval='daily'))
 
 
 @app.route('/card', methods=['POST'])
