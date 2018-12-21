@@ -60,7 +60,7 @@ def sync():
 def login_plus(id):
     i = constants.DB.query('select today_login from public.users where id=' + id)
     i = i[0][0] + 1
-    constants.DB.query('update public.users set today_login=' + i + ' where id=' + id)
+    constants.DB.query('update public.users set today_login=' + str(i) + ' where id=' + id)
 
 
 def update_logins():
