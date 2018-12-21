@@ -21,8 +21,9 @@ def get_card(card):
 
 
 def get_greet(card):
-    resp = constants.DB.query('select greeting, position from public.users where card = \'' + card + '\'')
+    resp = constants.DB.query('select greeting, position, id from public.users where card = \'' + card + '\'')
     if resp.__len__() > 0:
+        login_plus(str(resp[0][2]))
         return str(get_common_greet(resp[0][1])) + ';' + str(resp[0][0]) + ';'
     else:
         return -1
