@@ -3,6 +3,7 @@ import constants
 import datetime
 import random
 import csv
+import os
 
 
 def init():
@@ -75,3 +76,4 @@ def update_logins():
         writer = csv.writer(file)
         writer.writerows(i)
     constants.DB.query('update public.users set today_login=0')
+    os.popen("/usr/bin/expect /var/www/locker/server/commit_updates.sh")
