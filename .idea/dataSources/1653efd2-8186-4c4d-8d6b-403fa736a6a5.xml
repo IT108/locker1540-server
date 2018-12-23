@@ -79,8 +79,8 @@
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionTimestamp>2018-12-21.10:21:39.077</IntrospectionTimestamp>
-      <IntrospectionStateNumber>744</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-12-23.19:56:40.940</IntrospectionTimestamp>
+      <IntrospectionStateNumber>819</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -635,7 +635,8 @@
     <column id="73" parent="24" name="admin">
       <Position>3</Position>
       <DataType>boolean|0s</DataType>
-      <StateNumber>597</StateNumber>
+      <StateNumber>819</StateNumber>
+      <DefaultExpression>false</DefaultExpression>
       <TypeId>16</TypeId>
     </column>
     <column id="74" parent="24" name="greeting">
