@@ -66,9 +66,9 @@ def login_plus(id):
 
 def update_logins():
     time = datetime.datetime.now()
-    filename = "logs/" + time.day + '.' + time.month + '.' + time.year + '.log'
+    filename = "logs/" + str(time.day) + '.' + str(time.month) + '.' + str(time.year) + '.log.csv'
     i = []
-    q = constants.DB.query('select id, name, today_login from public.users')
+    q = constants.DB.query('select id, name, today_login from public.users order by id')
     for a in q:
         i.append([a[0], a[1], a[2]])
     with open(filename, "w", newline="") as file:
