@@ -1,9 +1,8 @@
-#!/usr/local/bin/expect --
+#!/usr/bin/expect -f
 
-spawn su it108_admin
+spawn ./git_commit.sh
 expect "Password: "
-send "ITCHURCH\r"
-spawn sudo -s
+send -- "ITCHURCH\r"
 expect "[sudo] password for it108_admin: "
-send "ITCHURCH\r"
-sh /var/www/locker/server/git_commit.sh
+send -- "ITCHURCH\r"
+expect eof
