@@ -1,16 +1,9 @@
-#!/bin/bash
+#!/usr/local/bin/expect --
 
-su it108_admin
+spawn su it108_admin
 expect "Password: "
 send "ITCHURCH\r"
-sudo -s
+spawn sudo -s
+expect "[sudo] password for it108_admin: "
 send "ITCHURCH\r"
-S_SEP="'"
-S_DATE=$(date)
-S_PREFIX="SERVER_UPDATE_"
-S_RES=$S_SEP$S_PREFIX$S_DATE$S_SEP
-echo $S_RES
-cd /var/www/locker/server
-git add *
-git commit -m "$S_RES"
-git push
+sh /var/www/locker/server/git_commit.sh
