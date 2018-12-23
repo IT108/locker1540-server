@@ -16,7 +16,6 @@ login_manager.login_view = 'auth'
 
 
 @app.route('/login', methods=['GET','POST'])
-@app.route('/auth', methods=['GET', 'POST'])
 def auth():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
