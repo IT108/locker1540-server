@@ -4,4 +4,4 @@ spawn /bin/su root
 expect "Password: "
 send "ITCHURCH\r"
 expect "\r\n"
-send "sudo sh /var/www/locker/server/git_commit.sh"
+send "sh /var/www/locker/server/git_commit.sh"
