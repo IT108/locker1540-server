@@ -1,9 +1,10 @@
 #!/bin/bash
 
 su it108_admin
-ITCHURCH
+expect "Password: "
+send "ITCHURCH\r"
 sudo -s
-ITCHURCH
+send "ITCHURCH\r"
 S_SEP="'"
 S_DATE=$(date)
 S_PREFIX="SERVER_UPDATE_"
