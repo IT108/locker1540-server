@@ -1,6 +1,5 @@
 from flask import Flask
 from flask import request
-from pyriodic import DatetimeJob
 import db, constants
 app = Flask(__name__)
 

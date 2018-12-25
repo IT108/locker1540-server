@@ -2,8 +2,6 @@ import postgresql
 import constants
 import datetime
 import random
-import csv
-import os
 
 
 def init():
@@ -60,20 +58,21 @@ def sync():
 
 
 def login_plus(id):
-    i = constants.DB.query('select today_login from public.users where id=' + id)
+    i = constants.DB.query('select today_login, name from public.users where id=' + id)
     i = i[0][0] + 1
     constants.DB.query('update public.users set today_login=' + str(i) + ' where id=' + id)
+    write_to_log(i[0][1], id)
 
 
-def update_logins():
+def write_to_log(name, id):
     time = datetime.datetime.now()
-    filename = "logs/" + str(time.day) + '.' + str(time.month) + '.' + str(time.year) + '.log.csv'
-    i = []
-    q = constants.DB.query('select id, name, today_login from public.users order by id')
-    for a in q:
-        i.append([a[0], a[1], a[2]])
-    with open(filename, "w", newline="") as file:
-        writer = csv.writer(file)
-        writer.writerows(i)
-    constants.DB.query('update public.users set today_login=0')
-    os.popen("/usr/bin/expect /var/www/locker/server/commit_updates.sh")
+    filename = "/var/www/locker/server/static/logs/" + str(time.day) + '.' + str(time.month) + '.' + str(
+        time.year) + 'full.log'
+    file = open(filename, 'a')
+    now = '[' + str(time.day) + '.' + str(time.month) + '.' + str(time.year) + '; ' + str(time.hour) + ':' \
+          + str(time.minute) + ':' + str(time.second) + ']'
+    file.write(now + ': id=' + str(id) + ' ;' + str(name))
+    file.close()
+
+
+
