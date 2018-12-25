@@ -82,4 +82,4 @@ def get_time(hour, minute, second):
 
 def normalize_num(number):
     if number // 10 == 0: number = '0' + str(number)
-    return number
+    return str(number)
