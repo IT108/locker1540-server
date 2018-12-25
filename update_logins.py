@@ -8,7 +8,7 @@ password = 'locker1540_admin'
 DBName = 'locker'
 DB = postgresql.open('pq://' + username + ':' + password + '@' + DBIP + ':5432/' + DBName)
 time = datetime.datetime.now()
-filename = "/var/www/locker/server/logs/" + str(time.day) + '.' + str(time.month) + '.' + str(time.year) + '.log.csv'
+filename = "/var/www/locker/server/static/logs/" + str(time.day) + '.' + str(time.month) + '.' + str(time.year) + '.log.csv'
 i = []
 q = DB.query('select id, name, today_login from public.users order by id')
 for a in q:
