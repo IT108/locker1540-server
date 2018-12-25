@@ -72,7 +72,7 @@ def write_to_log(name, id):
     file = open(filename, 'a')
     now = '[' + str(time.day) + '.' + str(time.month) + '.' + str(time.year) + '; ' + str(time.hour) + ':' \
           + str(time.minute) + ':' + str(time.second) + ']'
-    file.write(now + ': id=' + str(id) + ' ;' + str(name) + '\n')
+    file.write(now + ': id=' + str(id) + ' ;' + str(name) + '\r\n')
     file.close()
 
 
