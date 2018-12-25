@@ -61,7 +61,7 @@ def login_plus(id):
     i = constants.DB.query('select today_login, name from public.users where id=' + id)
     i = i[0][0] + 1
     constants.DB.query('update public.users set today_login=' + str(i) + ' where id=' + id)
-    write_to_log(i[0][1], id)
+    write_to_log(str(i[0][1]), id)
 
 
 def write_to_log(name, id):
