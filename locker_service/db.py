@@ -70,10 +70,16 @@ def write_to_log(name, id):
     filename = "/var/www/locker/server/static/logs/" + str(time.day) + '.' + str(time.month) + '.' + str(
         time.year) + 'full.log'
     file = open(filename, 'a')
-    now = '[' + str(time.day) + '.' + str(time.month) + '.' + str(time.year) + '; ' + str(time.hour) + ':' \
-          + str(time.minute) + ':' + str(time.second) + ']'
-    file.write(now + ': id=' + str(id) + ' ;' + str(name) + '\r\n')
+    now = '[' + str(time.day) + '.' + str(time.month) + '.' + str(time.year) + '; ' + get_time(time.hour, time.minute, time.second) + ']'
+    file.write(now + ': id=' + str(id) + '; ' + str(name) + '\r\n')
     file.close()
 
 
+def get_time(hour, minute, second):
+    time = normalize_num(hour) + ':' + normalize_num(minute) + ':' + normalize_num(second)
+    return time
 
+
+def normalize_num(number):
+    if number // 10 == 0: number = '0' + str(number)
+    return number
