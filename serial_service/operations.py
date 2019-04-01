@@ -16,5 +16,11 @@ def check_card(card):
 
 def play_sound(sounds):
     for sound in sounds:
-        sound = AudioSegment.from_mp3(sound)
+        while len(sound) < 4:
+            sound = '0' + sound
+        sound = sound + '.mp3'
+        sound = AudioSegment.from_mp3("mp3/" + sound)
         play(sound)
+
+
+play_sound('1')
