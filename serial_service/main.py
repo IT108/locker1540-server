@@ -1,6 +1,6 @@
 import serial
-import serial_service.constants as constants
-import serial_service.operations as operations
+import constants
+import operations
 ser = serial.Serial()
 
 
@@ -9,9 +9,11 @@ def start_serial():
     ser.baudrate = constants.rate
     try:
         ser.open()
-        main()
-    except Exception:
+    except Exception as e:
+        print(e)
+        print("something went wrong")
         return False
+    main()
 
 
 def main():
@@ -21,10 +23,10 @@ def main():
             operation = req[req.find('[') + 1:req.find(']')]
             data = req[req.find(']') + 1:req.find('\r\n')]
             data = format_data(data)
-            if operations == 'stop':
+            if operation == 'stop':
                 exit(0)
             res = operations.run_operation(operation, data)
-            ser.write(res)
+            ser.write(res.encode('utf-8'))
             operations.play_queue()
 
 
@@ -34,5 +36,9 @@ def format_data(data):
     data = data.split(',')
     for a in data:
         a = a.split(':')
-        res[a[0]] = res[a[1]]
+        print(a)
+        res[a[0]] = a[1]
     return res
+
+
+start_serial()

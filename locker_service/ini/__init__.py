@@ -3,6 +3,7 @@ from flask import request
 import db, constants
 app = Flask(__name__)
 
+
 @app.route('/card', methods=['POST'])
 def hello_guest():
     return str(db.get_card(request.values.get('card')))
