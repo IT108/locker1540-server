@@ -21,8 +21,11 @@ def main():
             operation = req[req.find('[') + 1:req.find(']')]
             data = req[req.find('[') + 1:req.find('\r\n')]
             data = format_data(data)
+            if operations == 'stop':
+                exit(0)
             res = operations.run_operation(operation, data)
             ser.write(res)
+            operations.play_queue()
 
 
 def format_data(data):
