@@ -19,7 +19,7 @@ def main():
         if ser.in_waiting > 0:
             req = ser.readline().decode('utf-8')
             operation = req[req.find('[') + 1:req.find(']')]
-            data = req[req.find('[') + 1:req.find('\r\n')]
+            data = req[req.find(']') + 1:req.find('\r\n')]
             data = format_data(data)
             if operations == 'stop':
                 exit(0)
