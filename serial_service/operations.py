@@ -23,13 +23,23 @@ def get_greet(card):
     res = requests.post('http://176.99.11.114/greet', {'card': card})
     res = res.text.split(';')
     constants.sounds_queue.append(res)
-    append_sounds(res)
+    append_sounds(res[:len(res) - 1])
     return res
 
 
 def append_sounds(s):
+    tmp = []
     for a in s:
-        constants.sounds_queue.append(a)
+        while len(a) < 4:
+            a = '0' + a
+        a = "mp3/" + a + '.mp3'
+        a = AudioSegment.from_mp3(a)
+        tmp.append(a)
+    res = tmp[0]
+    tmp = tmp[1:]
+    for p in tmp:
+        res = res + p
+    constants.sounds_queue.append(res)
     print(constants.sounds_queue)
 
 
@@ -40,17 +50,7 @@ def play_queue():
 
 
 def play_sound(sounds):
-    res = []
     for sound in sounds:
-        while len(sound) < 4:
-            sound = '0' + sound
-        sound = "mp3/" + sound + '.mp3'
-        res.append(sound)
-    a = AudioSegment.from_mp3(res[0])
-    res = res[1:]
-    for p in res:
-        p = AudioSegment.from_mp3(p)
-        a = a + p
-    play(a)
+        play(sound)
 
 
