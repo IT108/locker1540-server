@@ -20,18 +20,19 @@ def main():
     while 1:
         if ser.in_waiting > 0:
             req = ser.readline().decode('utf-8')
-            if not req.find('['):
+            if req.find('[') == '-1':
                 print(req)
-            operation = req[req.find('[') + 1:req.find(']')]
-            data = req[req.find(']') + 1:req.find('\r\n')]
-            data = format_data(data)
-            if operation == 'stop':
-                exit(0)
-            res = operations.run_operation(operation, data)
-            print(res.encode('utf-8'))
-            ser.write(res.encode('utf-8'))
-            operations.process_sounds(constants.sounds)
-            operations.play_queue()
+            else:
+                operation = req[req.find('[') + 1:req.find(']')]
+                data = req[req.find(']') + 1:req.find('\r\n')]
+                data = format_data(data)
+                if operation == 'stop':
+                    exit(0)
+                res = operations.run_operation(operation, data)
+                print(res.encode('utf-8'))
+                ser.write(res.encode('utf-8'))
+                operations.process_sounds(constants.sounds)
+                operations.play_queue()
 
 
 def format_data(data):
