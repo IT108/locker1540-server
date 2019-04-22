@@ -20,7 +20,7 @@ def write_status(status):
     cur = conn.cursor()
     q = 1
     for i in status:
-        values = [str(q), to_sql_str(i), to_sql_str(status[i]), to_sql_str(datetime.datetime.now().isoformat(' ', 'seconds'))]
+        values = [str(q), to_sql_str(i), to_sql_str(status[i]), to_sql_str(datetime.datetime.now().isoformat(' ')[:-7])]
         sql = 'INSERT OR REPLACE INTO ' + constants.STATUS_TABLE + '(id,name,status,updated) VALUES('
         for a in values:
             sql += a + ','

@@ -30,4 +30,4 @@ def request_status():
 if __name__ == '__main__':
     if not telemetry_serial.start_serial():
         exit(1)
-    app.run()
+    app.run(host='0.0.0.0')

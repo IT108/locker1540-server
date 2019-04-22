@@ -1,6 +1,6 @@
-serial_name = '/dev/pts/0'
+serial_name = '/dev/ttyACM0'
 rate = 9600
-api_serial = '/dev/pts/2'
+api_serial = '/dev/pts/1'
 api_rate = 9600
 sounds_queue = []
 sounds = []

@@ -6,6 +6,6 @@ create_table_command = ("create table if not exists status (\n"
 DB_NAME = 'telemetry'
 STATUS_TABLE = 'status'
 STATUS_COLUMNS = ['name', 'status', 'updated']
-telemetry_serial = '/dev/pts/3'
+telemetry_serial = '/dev/pts/2'
 telemetry_serial_rate = 9600
 GET_STATUS_OPERATION = '[status]'
