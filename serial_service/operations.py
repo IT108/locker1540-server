@@ -18,7 +18,7 @@ def check_card(card):
         return 'N'
     res = res.text.split(';')
     append_sounds(res[1:len(res) - 1])
-    return res[0]
+    return 'Y'
 
 
 def get_greet(card):
