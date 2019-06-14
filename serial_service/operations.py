@@ -14,6 +14,8 @@ def run_operation(op_id, data):
 def check_card(card):
     res = requests.post('http://176.99.11.114/card', {'card': card})
     print(res.text)
+    if res.text == 'False':
+        return 'N'
     res = res.text.split(';')
     append_sounds(res[1:len(res) - 1])
     return res[0]
