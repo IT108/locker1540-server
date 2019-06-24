@@ -26,7 +26,7 @@ def get_greet(card):
     res = res.text.split(';')
     constants.sounds_queue.append(res)
     constants.sounds.extend(res[1:-1])
-    return res
+    return ''
 
 
 def process_sounds(sounds):
