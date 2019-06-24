@@ -36,6 +36,8 @@ def process_sounds(sounds):
 def append_sounds(s):
     tmp = []
     for a in s:
+        if a == '-1':
+            pass
         while len(a) < 4:
             a = '0' + a
         a = "mp3/" + a + '.mp3'
