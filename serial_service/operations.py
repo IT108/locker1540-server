@@ -17,7 +17,7 @@ def check_card(card):
     if res.text == 'False':
         return 'N'
     res = res.text.split(';')
-    append_sounds(res[1:len(res) - 1])
+    constants.sounds.extend(res[1:-1])
     return 'Y'
 
 
@@ -25,12 +25,13 @@ def get_greet(card):
     res = requests.post('http://176.99.11.114/greet', {'card': card})
     res = res.text.split(';')
     constants.sounds_queue.append(res)
-    constants.sounds.extend(res[:len(res) - 1])
+    constants.sounds.extend(res[1:-1])
     return res
 
 
 def process_sounds(sounds):
-    append_sounds(sounds)
+    if len(sounds) > 0:
+        append_sounds(sounds)
 
 
 def append_sounds(s):
