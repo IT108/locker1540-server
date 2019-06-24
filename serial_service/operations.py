@@ -25,8 +25,12 @@ def get_greet(card):
     res = requests.post('http://176.99.11.114/greet', {'card': card})
     res = res.text.split(';')
     constants.sounds_queue.append(res)
-    append_sounds(res[:len(res) - 1])
+    constants.sounds.extend(res[:len(res) - 1])
     return res
+
+
+def process_sounds(sounds):
+    append_sounds(sounds)
 
 
 def append_sounds(s):

@@ -26,7 +26,9 @@ def main():
             if operation == 'stop':
                 exit(0)
             res = operations.run_operation(operation, data)
+            print(res.encode('utf-8'))
             ser.write(res.encode('utf-8'))
+            operations.process_sounds(constants.sounds)
             operations.play_queue()
 
 
