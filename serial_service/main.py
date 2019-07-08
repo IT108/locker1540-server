@@ -20,6 +20,8 @@ def main():
     while 1:
         if ser.in_waiting > 0:
             req = ser.readline().decode('utf-8')
+            if not req.find('['):
+                print(req)
             operation = req[req.find('[') + 1:req.find(']')]
             data = req[req.find(']') + 1:req.find('\r\n')]
             data = format_data(data)
