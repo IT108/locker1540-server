@@ -1,4 +1,9 @@
-serial_name = '/dev/ttyACM0'
+serial_name = '/dev/pts/0'
 rate = 9600
+api_serial = '/dev/pts/2'
+api_rate = 9600
 sounds_queue = []
 sounds = []
+operations_queue = []
+api_address = 'http://127.0.0.1:5000/'
+STATUS_PAGE = 'locker/api/telemetry/status'

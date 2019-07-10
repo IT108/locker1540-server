@@ -1,0 +1,59 @@
+<html lang="ru">
+<head>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Locker status</title>
+</head>
+<body>
+<div id="table">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric">id</th>
+            <th>name</th>
+            <th>status</th>
+            <th>last updated</th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for status in sysstatus %}
+        <tr>
+            <td>{{ status.id }}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{ status.name }}</td>
+            <td>{{ status.status }}</td>
+            <td>{{ status.updated }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<button onclick="update_status()">update table</button>
+</body>
+<script>
+    window.onload = function () {
+        setInterval(update_status, 4000)
+    };
+
+    function update_status() {
+        $.ajax({
+            url: '/locker/api/monitor/status',
+            method: 'post',
+            success: function (resp) {
+                $('div#table').html(resp.data);
+                setTimeout(request_update, 3000)
+            }
+        });
+    }
+    function request_update() {
+        $.ajax({
+            url: '/locker/api/telemetry/request_status',
+            method: 'post',
+        });
+
+    }
+</script>
+</html>

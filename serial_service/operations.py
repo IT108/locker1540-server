@@ -2,6 +2,7 @@ import requests
 from pydub import AudioSegment
 from pydub.playback import play
 import constants as constants
+import json
 
 
 def run_operation(op_id, data):
@@ -9,6 +10,8 @@ def run_operation(op_id, data):
         return check_card(data['card'])
     elif op_id == 'play_greet':
         return get_greet(data['card'])
+    elif op_id == 'status':
+        return send_status(data)
 
 
 def check_card(card):
@@ -19,6 +22,13 @@ def check_card(card):
     res = res.text.split(';')
     constants.sounds.extend(res[1:-1])
     return 'Y'
+
+
+def send_status(data):
+    res = json.dumps(data)
+    address = constants.api_address + constants.STATUS_PAGE
+    resp = requests.post(address, {'status': res})
+    return ''
 
 
 def get_greet(card):
@@ -61,5 +71,3 @@ def play_queue():
 def play_sound(sounds):
     for sound in sounds:
         play(sound)
-
-

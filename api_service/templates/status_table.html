@@ -1,0 +1,20 @@
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">id</th>
+        <th>name</th>
+        <th>status</th>
+        <th>last updated</th>
+    </tr>
+    </thead>
+    <tbody>
+    {%for status in sysstatus %}
+    <tr>
+        <td>{{ status.id }}</td>
+        <td class="mdl-data-table__cell--non-numeric">{{ status.name }}</td>
+        <td>{{ status.status }}</td>
+        <td>{{ status.updated }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
