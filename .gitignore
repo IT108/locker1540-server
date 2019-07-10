@@ -1,3 +1,4 @@
 
-serial_service/.idea/
 .idea/
+/static/logs
+serial_service/.idea/
