@@ -1,6 +1,6 @@
 import constants
 import os
-from db import path, make_html
+from backend.db import path, make_html
 
 
 def sync(order):

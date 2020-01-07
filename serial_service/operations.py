@@ -1,7 +1,7 @@
 import requests
 from pydub import AudioSegment
 from pydub.playback import play
-import constants as constants
+from console_service import constants as constants
 import json
 
 

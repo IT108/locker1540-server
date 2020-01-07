@@ -1,5 +1,5 @@
 import serial
-import constants
+from console_service import constants
 import operations, api_operations
 ser = serial.Serial()
 api_ser = serial.Serial()

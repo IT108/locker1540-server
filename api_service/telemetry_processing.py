@@ -1,7 +1,7 @@
 import json
 import sqlite3
 from sqlite3 import Error
-import constants
+from console_service import constants
 import datetime
 
 

@@ -1,5 +1,5 @@
 import postgresql
-import constants
+from console_service import constants
 import datetime
 import random
 

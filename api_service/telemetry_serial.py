@@ -1,5 +1,5 @@
 import serial
-import constants
+from console_service import constants
 
 ser = serial.Serial()
 

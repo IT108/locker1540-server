@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
-import db, constants
+from console_service import db
+
 app = Flask(__name__)
 
 

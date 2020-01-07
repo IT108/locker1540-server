@@ -1,16 +1,30 @@
-import postgresql
-import os, sys
-DBIP = '89.108.103.37'
-username = 'locker_admin'
-password = 'locker1540_admin'
-DBName = 'locker'
+import os
+import sys
+
+import peewee
+
+DB = peewee.PostgresqlDatabase(None)
+
+DB_SETTINGS = {
+    'host': '89.108.103.37',
+    'database': 'locker',
+    'user': 'locker_admin',
+    'password': 'locker1540_admin',
+    'port': '5432'
+}
+
+PEEWEE_SETTINGS = {
+    'autoconnect': False,
+    'max_connections': 20,
+    'stale_timeout': 200,
+    'autorollback': True
+}
+
 server_path = '/var/www/locker/server/'
 dev_path = os.getcwd()
 current_path = server_path
-if  sys.platform == 'win32':
+if sys.platform == 'win32':
     current_path = dev_path
-DB = postgresql.open('pq://' + username + ':' + password + '@' + DBIP + ':5432/' + DBName)
-
 
 # ------------------------------------------------DATASETS------------------------------------------------ #
 
