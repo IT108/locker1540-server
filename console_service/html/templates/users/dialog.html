@@ -30,20 +30,24 @@
         <form id="options-form">
             <div><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
                 <input type="radio" id="option-1" class="mdl-radio__button" name="options"
-                       value="students" {{ studentsChecked }}>
-                <span class="mdl-radio__label">Students</span>
+                       value="student" {% if position == "student" %}
+                       checked
+                       {% endif %}>
+                <span class="mdl-radio__label">Student</span>
             </label>
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
                     <input type="radio" id="option-2" class="mdl-radio__button" name="options"
-                           value="teachers" {{ teachersChecked }}>
-                    <span class="mdl-radio__label">Teachers</span>
+                           value="teacher" {% if position == "teacher" %}
+                       checked
+                       {% endif %}>
+                    <span class="mdl-radio__label">Teacher</span>
                 </label>
             </div>
         </form>
     </div>
     <div class="mdl-dialog__actions">
         <button type="button" class="mdl-button  mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                onclick="updateUser({{ userId }});">Ok
+                onclick="updateUser({{ id }});">Ok
         </button>
         <button type="button" class="mdl-button close mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                 onclick="dialog1.close();">Cancel

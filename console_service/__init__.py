@@ -5,9 +5,9 @@ from flask_login import LoginManager, login_user, login_required, current_user, 
 from werkzeug.urls import url_parse
 
 import backend.admins as admins
-import backend.index as index
 import constants as constants
-from backend import db as db
+from backend.db import common, auth
+from backend.pages import users as users
 
 template_dir = os.path.join(constants.current_path, 'html')
 template_dir = os.path.join(template_dir, 'templates')
@@ -15,7 +15,7 @@ print(template_dir)
 app = Flask(__name__, template_folder=template_dir)
 app.secret_key = 'secretkey'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
-db.init()
+common.init()
 login_manager = LoginManager(app)
 login_manager.login_view = 'auth'
 
@@ -32,16 +32,16 @@ def after_request(response):
 
 
 @app.route('/login', methods=['GET', 'POST'])
-def auth():
+def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     error = None
     if request.method == 'POST':
-        db_resp = db.check_admin(request.form['username'], request.form['password'])
+        db_resp = auth.check_admin(request.form['username'], request.form['password'])
         if db_resp == 0:
             error = 'Invalid Credentials. Please try again.'
         else:
-            user = db.get_user(db_resp)
+            user = auth.get_user(db_resp)
             login_user(user)
             next_page = request.args.get('next')
             if not next_page or url_parse(next_page).netloc != '':
@@ -61,10 +61,10 @@ def logout():
 
 
 @app.route('/')
-@app.route('/index')
+@app.route('/users')
 @login_required
 def index():
-    return render_template('index.html', name=current_user.name[0])
+    return render_template('users.html', name=current_user.name[0])
 
 
 @app.route('/sync', methods=['POST'])
@@ -74,7 +74,7 @@ def sync():
     req = request.values.get('sort')
     if req is not None:
         param = req
-    return index.sync(param)
+    return users.sync(param)
 
 
 @app.route('/add_user', methods=['POST'])
@@ -84,7 +84,7 @@ def add_user():
     card = str(request.values.get('card'))
     active = str(request.values.get('active'))
     position = str(request.values.get('position'))
-    index.add_user(name, card, active, position)
+    users.add_user(name, card, active, position)
     return 'OK'
 
 
@@ -97,20 +97,20 @@ def update_user():
     active = str(request.values.get('active'))
     position = str(request.values.get('position'))
     print(position)
-    index.update_user(id, name, card, active, position)
+    users.update_data(id, name, card, active, position)
     return 'OK'
 
 
 @app.route('/toggle_user', methods=['POST'])
 @login_required
 def toggle_user():
-    return index.toggle_user(request.values.get('id'))
+    return users.toggle_user(request.values.get('id'))
 
 
 @app.route('/open_dialog', methods=['POST'])
 @login_required
 def open_dialog():
-    return index.get_dialog(str(request.values.get('id')))
+    return users.get_dialog(str(request.values.get('id')))
 
 
 @app.route('/add_user_dialog', methods=['POST'])
@@ -119,7 +119,7 @@ def add_user_dialog():
     error = ''
     if request.values.get('error') is not None:
         error = 'Error:"' + request.values.get('error')
-    file = open(os.path.join(constants.current_path, 'html/templates/index/add_dialog.html'))
+    file = open(os.path.join(constants.current_path, 'html/templates/users/add_dialog.html'))
     return file.read().replace('{{ error }}', error)
 
 
@@ -184,7 +184,7 @@ def add_admin_dialog():
 
 @login_manager.user_loader
 def load_user(id):
-    return db.get_user(id)
+    return auth.get_user(id)
 
 
 if __name__ == '__main__':

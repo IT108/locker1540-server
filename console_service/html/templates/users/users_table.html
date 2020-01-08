@@ -1,0 +1,57 @@
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+    <tr>
+        <th>
+            <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect" onclick="changeSort('name');">
+                Name
+            </button>
+        </th>
+        <th>
+            <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect" onclick="changeSort('card');">
+                Card
+            </button>
+        </th>
+        <th>
+            <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect"
+                    onclick="changeSort('position');">Position
+            </button>
+        </th>
+        <th>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="changeSort('active');">Active
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>
+                <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect"
+                        id="table-button-{{ user.id }}-0"
+                        onclick="openDialog({{ user.id }})">{{ user.name }}</button>
+
+            </td>
+            <td>
+                <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect"
+                        id="table-button-{{ user.id }}-1"
+                        onclick="openDialog({{ user.id }})">{{ user.card }}</button>
+
+            </td>
+            <td>
+                <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect"
+                        id="table-button-{{ user.id }}-2"
+                        onclick="openDialog({{ user.id }})">{{ user.position }}</button>
+
+            </td>
+            <td><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="{{ user.id }}">
+                <input type="checkbox" id="{{ user.id }}" class="mdl-switch__input" {% if user.active %}
+                       checked
+                {% endif %}
+                       onclick="toggleUser('{{ user.id }}')">
+                <span class="mdl-switch__label"></span>
+            </label>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
