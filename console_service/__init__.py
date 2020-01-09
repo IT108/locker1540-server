@@ -4,20 +4,14 @@ from flask import redirect, render_template, url_for, request, Flask
 from flask_login import LoginManager, login_user, login_required, current_user, logout_user
 from werkzeug.urls import url_parse
 
-import backend.admins as admins
 import constants as constants
-from backend.db import common, auth
-from backend.pages import users as users
+import pre_start
+from backend.db import auth
+from backend.pages import users, admins
 
-template_dir = os.path.join(constants.current_path, 'html')
-template_dir = os.path.join(template_dir, 'templates')
-print(template_dir)
-app = Flask(__name__, template_folder=template_dir)
-app.secret_key = 'secretkey'
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 300
-common.init()
+app = Flask(__name__)
 login_manager = LoginManager(app)
-login_manager.login_view = 'auth'
+app, login_manager = pre_start.run(app, login_manager)
 
 
 @app.before_request
@@ -32,9 +26,9 @@ def after_request(response):
 
 
 @app.route('/login', methods=['GET', 'POST'])
-def login():
+def login_route():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('index_route'))
     error = None
     if request.method == 'POST':
         db_resp = auth.check_admin(request.form['username'], request.form['password'])
@@ -45,16 +39,16 @@ def login():
             login_user(user)
             next_page = request.args.get('next')
             if not next_page or url_parse(next_page).netloc != '':
-                next_page = url_for('index')
+                next_page = url_for('index_route')
             return redirect(next_page)
     return render_template('login.html', error=error)
 
 
 @app.route('/logout', methods=['GET'])
 @login_required
-def logout():
+def logout_route():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('index_route'))
 
 
 # <------------------------------------------------USERS------------------------------------------------>
@@ -63,13 +57,13 @@ def logout():
 @app.route('/')
 @app.route('/users')
 @login_required
-def index():
+def index_route():
     return render_template('users.html', name=current_user.name[0])
 
 
 @app.route('/sync', methods=['POST'])
 @login_required
-def sync():
+def sync_route():
     param = 'id'
     req = request.values.get('sort')
     if req is not None:
@@ -79,7 +73,7 @@ def sync():
 
 @app.route('/add_user', methods=['POST'])
 @login_required
-def add_user():
+def add_user_route():
     name = str(request.values.get('name'))
     card = str(request.values.get('card'))
     active = str(request.values.get('active'))
@@ -90,7 +84,7 @@ def add_user():
 
 @app.route('/update_user', methods=['POST'])
 @login_required
-def update_user():
+def update_user_route():
     id = str(request.values.get('id'))
     name = str(request.values.get('name'))
     card = str(request.values.get('card'))
@@ -103,19 +97,19 @@ def update_user():
 
 @app.route('/toggle_user', methods=['POST'])
 @login_required
-def toggle_user():
+def toggle_user_route():
     return users.toggle_user(request.values.get('id'))
 
 
 @app.route('/open_dialog', methods=['POST'])
 @login_required
-def open_dialog():
+def open_dialog_route():
     return users.get_dialog(str(request.values.get('id')))
 
 
 @app.route('/add_user_dialog', methods=['POST'])
 @login_required
-def add_user_dialog():
+def add_user_dialog_route():
     error = ''
     if request.values.get('error') is not None:
         error = 'Error:"' + request.values.get('error')
@@ -128,13 +122,13 @@ def add_user_dialog():
 
 @app.route('/admins', methods=['GET'])
 @login_required
-def admins():
+def admins_route():
     return render_template('admins.html', name=current_user.name[0])
 
 
 @app.route('/sync_admins', methods=['POST'])
 @login_required
-def sync_admins():
+def sync_admins_route():
     param = 'id'
     req = request.values.get('sort')
     if req is not None:
@@ -142,9 +136,15 @@ def sync_admins():
     return admins.sync(param)
 
 
+@app.route('/toggle_admin', methods=['POST'])
+@login_required
+def toggle_admin_route():
+    return admins.toggle_user(request.values.get('id'))
+
+
 @app.route('/add_admin', methods=['POST'])
 @login_required
-def add_admin():
+def add_admin_route():
     name = str(request.values.get('name'))
     email = str(request.values.get('email'))
     login = str(request.values.get('login'))
@@ -154,17 +154,17 @@ def add_admin():
 
 @app.route('/update_admin', methods=['POST'])
 @login_required
-def update_admin():
+def update_admin_route():
     id = str(request.values.get('id'))
     name = str(request.values.get('name'))
     email = str(request.values.get('email'))
     login = str(request.values.get('login'))
-    return admins.update_user(id, name, email, login)
+    return admins.update_admin(id, name, email, login)
 
 
 @app.route('/delete_admin', methods=['POST'])
 @login_required
-def delete_admin():
+def delete_admin_route():
     id = str(request.values.get('id'))
     admins.delete_admin(id)
     return 'OK'
@@ -172,13 +172,13 @@ def delete_admin():
 
 @app.route('/open_admin_dialog', methods=['POST'])
 @login_required
-def open_admin_dialog():
+def open_admin_dialog_route():
     return admins.get_dialog(str(request.values.get('id')))
 
 
 @app.route('/add_admin_dialog', methods=['POST'])
 @login_required
-def add_admin_dialog():
+def add_admin_dialog_route():
     return admins.get_empty_dialog()
 
 

@@ -6,11 +6,11 @@ import peewee
 DB = peewee.PostgresqlDatabase(None)
 
 DB_SETTINGS = {
-    'host': '89.108.103.37',
-    'database': 'locker',
-    'user': 'locker_admin',
-    'password': 'locker1540_admin',
-    'port': '5432'
+    'host': '',
+    'database': '',
+    'user': '',
+    'password': '',
+    'port': ''
 }
 
 PEEWEE_SETTINGS = {
@@ -25,6 +25,12 @@ dev_path = os.getcwd()
 current_path = server_path
 if sys.platform == 'win32':
     current_path = dev_path
+
+
+# -------------------------------FLASK CONFIG---------------------------- #
+
+templates_dir = ''
+secret_key = 'secretkey'
 
 # ------------------------------------------------DATASETS------------------------------------------------ #
 

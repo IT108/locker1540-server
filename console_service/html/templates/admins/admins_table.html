@@ -1,0 +1,58 @@
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+    <tr>
+        <th>
+            <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect" onclick="changeSort('login');">
+                Login
+            </button>
+        </th>
+        <th>
+            <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect" onclick="changeSort('name');">
+                Name
+            </button>
+        </th>
+        <th>
+            <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect" onclick="changeSort('email');">
+                Email
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for admin in admins %}
+        <tr>
+            <td align="left">
+                <div class="table-button">
+                    <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect"
+                            id="table-button-{{ admin.id }}-0"
+                            onclick="openDialog({{ admin.id }})">{{ admin.login }}</button>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            </td>
+            <td align="left">
+                <div class="table-button">
+                    <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect"
+                            id="table-button-{{ admin.id }}-1"
+                            onclick="openDialog({{ admin.id }})">{{ admin.name }}</button>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            </td>
+            <td align="left">
+                <div class="table-button">
+                    <button class="table-button mdl-button mdl-js-button mdl-js-ripple-effect"
+                            id="table-button-{{ admin.id }}-2"
+                            onclick="openDialog({{ admin.id }})">{{ admin.email }}</button>
+                    <div class="mdl-layout-spacer"></div>
+                </div>
+            </td>
+            <td><label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="{{ admin.id }}">
+                <input type="checkbox" id="{{ admin.id }}" class="mdl-switch__input" {% if admin.active %}
+                       checked {% endif %}
+                       onclick="toggleAdmin({{ admin.id }})">
+                <span class="mdl-switch__label"></span>
+            </label>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

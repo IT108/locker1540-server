@@ -16,18 +16,20 @@
             </div>
             <p id="error" class="error"><strong></strong>
         </form>
+        {% if error %}
         <div>
             <p class="error"><strong> {{ error }}</strong>
         </div>
+        {% endif %}
     </div>
     <div class="mdl-dialog__actions">
         <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
-                onclick="{{ onClick }}">Ok
+                onclick="updateUser({{ id }})">Ok
         </button>
         <button type="button" class="mdl-button close mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                 onclick="dialog1.close();">Cancel
         </button>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="{{ deleteF }}">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="deleteUser({{ id }})">
             Delete
         </button>
     </div>
